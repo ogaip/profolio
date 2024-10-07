@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, UserRole, Role, Project, Contact, SocialNetwork, ProgrammingLanguage, Framework
+from .models import Profile, UserRole, Role, Project, Contact, SocialNetwork, ProgrammingLanguage, Framework, Reference, Experience
 from django.contrib.auth.models import User
 # Register your models here.
 
@@ -81,6 +81,13 @@ class FrameworkAdmin(admin.ModelAdmin):
     class Meta:
         model= Framework
 
+class ReferenceAdmin(admin.ModelAdmin):
+    class Meta:
+        model= Reference
+        
+class ExperienceAdmin(admin.ModelAdmin):
+    class Meta:
+        model= Experience
     
 admin.site.unregister(User)
 admin.site.register(Profile)
@@ -88,6 +95,9 @@ admin.site.register(Role)
 admin.site.register(UserRole)
 admin.site.register(Project)
 admin.site.register(Contact)
+admin.site.register(SocialNetwork)
 admin.site.register(ProgrammingLanguage)
 admin.site.register(Framework)  
+admin.site.register(Reference)
+admin.site.register(Experience)
 admin.site.register(User, ProfileAdmin)

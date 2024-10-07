@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from data.models import Profile, Project, ProgrammingLanguage,Framework
+from data.models import Profile, Project, ProgrammingLanguage,Framework, SocialNetwork, Reference, Experience
 from data.forms import ContactForm
 
 # Create your views here.
@@ -8,14 +8,17 @@ from data.forms import ContactForm
 def index(request):
     titulo= "Pagina HOla"
     
-    user= User.objects.filter(username="ogaip")
+    user= User.objects.filter(username="ogaip").values()
     perfil= Profile.objects.filter(user__username="ogaip").values()
     lenguajes= ProgrammingLanguage.objects.filter(user__username="ogaip").values()
     framework= Framework.objects.filter(user__username="ogaip").values()
     proyecto= Project.objects.filter(user__username="ogaip").values()
-    contacto= ContactForm()
+    social= SocialNetwork.objects.filter(user__username="ogaip").values()
+    referencia= Reference.objects.filter(user__username="ogaip").values()
+    experiencia= Experience.objects.filter(user__username="ogaip").values()
     
-    print(contacto)
+    
+    print(experiencia)
     
     return render(request, "pages/index.html", {
         "title": titulo,
@@ -25,6 +28,8 @@ def index(request):
         "framework": framework,
         "proyecto": proyecto,
         "contacto": contacto,
+        "social": social,
+        "experiencia": experiencia,
     })
     
 def contacto(request):
